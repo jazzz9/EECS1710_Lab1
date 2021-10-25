@@ -5,6 +5,7 @@ float xpos, ypos, xvel, yvel, acclr, n, xblock, yblock, boardHeight,give, space,
 int value = 0, dir = 1, score, highscore;
 boolean fall, Shoot, backboard, reset;
 PShader blur;
+PImage pig;
 PImage bird;
 PImage back;
 
@@ -27,6 +28,10 @@ void setup() {
   reset = false;
   back = loadImage("back.jpg");
   back.resize(width,height);
+  pig = loadImage("pig.png");
+  pig.resize(100,100);
+  bird = loadImage("bird.png");
+  bird.resize(75,75);
 }
 
 void draw() {
@@ -45,7 +50,7 @@ void draw() {
   }
   text("HIGHSCORE: " + highscore, 10, height - 70);   
   text("SCORE: " + score, 10, height - 30); 
-  rect(xblock, yblock, n, 5);      
+  image(pig,xblock+150, yblock);      
   println(score); 
   if (xpos >= width||ypos >= height){
      reset = true;
@@ -58,7 +63,7 @@ void draw() {
   }
   rect(0, 0, yvel*20, 5);
   rect(0, 10, xvel*20, 5);
-  rect(xblock+n, yblock - boardHeight, 5, boardHeight+5);
+  //image(pig,xblock+n, yblock - boardHeight);
 if (Shoot == false||fall==false){
   xvel = (mouseX-width/5)/7;
   yvel = (height-300 - mouseY)/7;
@@ -103,8 +108,7 @@ if (xpos>xblock+20 && xpos<(xblock+n) && ypos < (yblock + give) && ypos > (ybloc
 
   score += 1;
 }
-bird = loadImage("bird.png");
-bird.resize(75,75);
+
 image(bird,xpos-50,ypos-50);
  
   if (reset == true){
@@ -133,6 +137,9 @@ void mouseClicked() {
     Shoot = true;
   }
 }
+
+
+
 
 
 
