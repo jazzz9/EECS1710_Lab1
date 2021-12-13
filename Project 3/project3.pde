@@ -18,5 +18,3 @@ void draw() {
   ellipse(x,y,factor,factor);
 }
 }
-
-//Reference: The Coding Train's tutorials
