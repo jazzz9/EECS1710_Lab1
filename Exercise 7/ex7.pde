@@ -23,8 +23,8 @@ void draw() {
 class Circle {
   static final float noise_factor = 0.01f;
   
-  final float positionX;
-  final float positionY;
+  final float pX;
+  final float pY;
 
   float radius;
 
@@ -33,27 +33,27 @@ class Circle {
   final float bri_factor;
   
   Circle(float posX, float posY) {
-    positionX = posX;
-    positionY = posY;
-    sat_factor = 70f;
-    bri_factor = 90f;
+    pX = posX;
+    pY = posY;
+    sat_factor = 80;
+    bri_factor = 100;
   }
   
   void draw() {
-    colorMode(HSB, 100f);
+    colorMode(RGB, 100);
     noStroke();
     fill(hue_factor, sat_factor, bri_factor);
     ellipseMode(RADIUS);
-    ellipse(positionX, positionY, radius, radius);
+    ellipse(pX, pY, radius, radius);
   }
   
   void reflect(float x, float y) {
-    radius = 1f + 2f * noise(positionX * noise_factor, positionY * noise_factor, (x - y) * 0.5f  * noise_factor);
-    radius += sin(frameCount * 0.05f) * 0.05f;
+    radius = 1 + 2 * noise(pX * noise_factor, pY * noise_factor, (x - y) * 0.5  * noise_factor);
+    radius += sin(frameCount * 0.05) * 0.05;
     radius = pow(radius, 3);
 
-    hue_factor = 500f * noise(positionX * noise_factor, positionY * noise_factor, (x + y) * 0.5f * noise_factor);
-    hue_factor += frameCount * 0.2f;
+    hue_factor = 500 * noise(pX * noise_factor, pY * noise_factor, (x + y) * 0.5 * noise_factor);
+    hue_factor += frameCount * 0.2;
     hue_factor = hue_factor % 100;
   }
 }
