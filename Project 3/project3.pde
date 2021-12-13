@@ -1,5 +1,4 @@
 PImage image;
-int OFF_MAX = 300;
 
 void setup() {
   size(1080,1060,P3D);
@@ -15,9 +14,9 @@ void draw() {
   color c = image.get(int(x),int(y));
   fill(c,25);
   noStroke();
-  ellipse(x,y,16,16);
+  float factor = random(20,mouseX/5);    //Slide mouse horizontally for blur-unblur effect
+  ellipse(x,y,factor,factor);
 }
 }
-
 
 //Reference: The Coding Train's tutorials
