@@ -1,7 +1,7 @@
 PImage image;
 
 void setup() {
-  size(1080,1060,P3D);
+  size(1080,1060);
   image = loadImage("image.jpg");
   image.resize(width,height);
   background(0);
